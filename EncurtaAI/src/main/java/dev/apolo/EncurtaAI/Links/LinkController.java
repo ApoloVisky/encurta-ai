@@ -23,11 +23,13 @@ public class LinkController {
 
     @PostMapping(produces = "application/json", consumes = "application/json")
     public ResponseEntity<LinkResponse> gerarUrlEncurtada(@RequestBody Map<String, String> request) {
-        System.out.println("Recebendo requisição para encurtar URL...");  // Debug statement
+        System.out.println("Recebendo requisição para encurtar URL...");
         String urlOriginal = request.get("urlOriginal");
 
         if (urlOriginal == null || urlOriginal.isEmpty()) {
-            LinkResponse errorResponse = new LinkResponse(null, null, null, null, null, Optional.of("URL original não fornecida"));
+            LinkResponse errorResponse = new LinkResponse(
+                    null, null, null, null, null, Optional.of("URL original não fornecida")
+            );
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
 
@@ -48,7 +50,7 @@ public class LinkController {
 
     @GetMapping("/r/{urlEncurtada}")
     public void redirecionarLink(@PathVariable String urlEncurtada, HttpServletResponse response) throws IOException {
-        System.out.println("Recebendo requisição para redirecionar URL...");  // Debug statement
+        System.out.println("Recebendo requisição para redirecionar URL...");
         Link link = linkService.obterUrlOriginal(urlEncurtada);
 
         if (link != null) {

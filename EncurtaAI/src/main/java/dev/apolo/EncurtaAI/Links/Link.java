@@ -11,17 +11,22 @@ public class Link {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "url_long")
     private String urlLong;
+
+    @Column(name = "url_encurtada")
     private String urlEncurtada;
+
+    @Column(name = "url_qr_code")
     private String urlQrCode;
+
+    @Column(name = "url_criada_em")
     private LocalDateTime urlCriadaEm;
+
+    @Column(name = "url_original")
     private String urlOriginal;
 
     public Link() {
-    }
-
-    public Link(Long id) {
-        this.id = id;
     }
 
     // Getters e Setters
@@ -63,5 +68,13 @@ public class Link {
 
     public void setUrlCriadaEm(LocalDateTime urlCriadaEm) {
         this.urlCriadaEm = urlCriadaEm;
+    }
+
+    public String getUrlOriginal() {
+        return urlOriginal;
+    }
+
+    public void setUrlOriginal(String urlOriginal) {
+        this.urlOriginal = urlOriginal;
     }
 }
